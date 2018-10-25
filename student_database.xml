@@ -1,0 +1,64 @@
+<CSE>
+    <STUDENT>
+        <ID>15001</ID>
+        <NAME>ARUN</NAME>
+        <AGE>20</AGE>
+        <CGPA>9.034</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15002</ID>
+        <NAME>BABU</NAME>
+        <AGE>19</AGE>
+        <CGPA>8.134</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15003</ID>
+        <NAME>BALA MURUGAN</NAME>
+        <AGE>20</AGE>
+        <CGPA>9.641</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15004</ID>
+        <NAME>CHANDRU</NAME>
+        <AGE>18</AGE>
+        <CGPA>9.101</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15005</ID>
+        <NAME>DHANUSH</NAME>
+        <AGE>20</AGE>
+        <CGPA>9.400</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15006</ID>
+        <NAME>HARISH</NAME>
+        <AGE>20</AGE>
+        <CGPA>7.988</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15007</ID>
+        <NAME>JAMES</NAME>
+        <AGE>19</AGE>
+        <CGPA>8.223</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15008</ID>
+        <NAME>KARTHI</NAME>
+        <AGE>21</AGE>
+        <CGPA>8.910</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15009</ID>
+        <NAME>MANOJ</NAME>
+        <AGE>20</AGE>
+        <CGPA>8.141</CGPA>
+    </STUDENT>
+    <STUDENT>
+        <ID>15010</ID>
+        <NAME>GOWTHAMAN</NAME>
+        <AGE>19</AGE>
+        <CGPA>7.912</CGPA>
+    </STUDENT>
+</CSE>
+
+
