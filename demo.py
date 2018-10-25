@@ -1,4 +1,5 @@
 #pip install pymysql
+#sql=("INSERT  INTO login(id, username, password) VALUES ('%d', '%s', '%d')" % ())
 
 import pymysql
 
