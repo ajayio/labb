@@ -1,0 +1,42 @@
+#include<conio.h>
+#include<stdio.h>
+#include<graphics.h>
+#include<math.h>
+void main()
+{
+int gd = DETECT,gm;
+int x1, y1, x2, y2,dx,dy,steps,k;
+float xincrement,yincrement,x,y;
+initgraph(&gd,&gm,"C:\\TC\\BGI");
+printf("Enter the Starting Point of x axis : ");
+scanf("%d", &x1);
+printf("Enter the Starting of y axis : ");
+scanf("%d", &y1);
+printf("Enter the End Point of x axis : ");
+scanf("%d", &x2);
+printf("Enter the End Point of y axis : ");
+scanf("%d", &y2);
+dx = x2-x1;
+dy = y2-y1;
+x=x1;
+y=y1;
+if(abs(dx) > abs(dy))
+	steps=abs(dx);
+else
+	steps=abs(dy);
+xincrement=dx/(float)steps;
+yincrement=dy/(float)steps;
+putpixel(ceil(x), ceil(y),WHITE);
+for(k=1;k<=steps;k++)
+{
+x=x+xincrement;
+y=y+yincrement;
+putpixel(ceil(x),ceil(y), WHITE);
+}
+getch();
+closegraph();
+}
+
+
+Enter the Starting Coordinates: 300 300
+Enter the Ending Coordinates: 400 400
