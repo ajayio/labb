@@ -1,0 +1,104 @@
+#include<stdio.h> 
+#include<conio.h> 
+#include<graphics.h> 
+#include<math.h> 
+void trans(); 
+void scale(); 
+void rotate(); 
+int maxx,maxy,midx,midy; 
+void axis() 
+{ 
+     line(midx,0,midx,maxy); 
+     line(0,midy,maxx,midy); 
+} 
+void main() 
+{ 
+	int ch; 
+	int gd=DETECT,gm; 
+	initgraph(&gd,&gm,"c:\\tc\\bgi"); 
+	setfillstyle(3,25); 
+	maxx=getmaxx(); 
+	maxy=getmaxy(); 
+	midx=maxx/2; 
+	midy=maxy/2; 
+            printf("\n MENU \n *************”);
+	printf("\n 1.Translation \n 2.Scaling \n 3.Rotation \n 4.exit"); 
+	printf("\nEnter your choice"); 
+	scanf("%d",&ch); 
+	do 
+	{ 
+	 switch(ch) 
+	 { 
+		case 1 : 
+			cleardevice(); 
+			trans(); 
+			getch(); 
+			break; 
+		case 2 : 
+			cleardevice(); 
+			scale(); 
+			getch(); 
+			break; 
+		case 3 : 
+			cleardevice(); 
+			rotate(); 
+			getch(); 
+			break; 
+		case 4 :break; 
+	} 
+	printf("\nEnter your choice"); 
+	scanf("%d",&ch); 
+           }while(ch<4); 
+	closegraph(); 
+} 
+void trans() 
+{ 
+	int x,y,z; 
+	outtextxy(100,20,"TRANSLATION"); 
+	axis(); 
+	bar3d(midx+100,midy-20,midx+60,midy-90,20,5); 
+	printf("Enter translation factor"); 
+	scanf("%d%d%d",&x,&y,&z); 
+	printf("After translation:"); 
+	bar3d(midx+(x+100),midy-(y+20),midx+(x+60),midy-(y+90),20,5); 
+
+} 
+void scale() 
+{ 
+	 int x,y,z; 
+	 outtextxy(100,20,"SCALING"); 
+	 axis(); 
+	 bar3d(midx+100,midy-20,midx+60,midy-90,20,5); 
+	 printf("Before scaling\n"); 
+	 printf("Enter scaling factors\n"); 
+	 scanf("%d %d %d", &x,&y,&z); 
+	 printf("After scaling\n"); 
+	 bar3d(midx+(x*100),midy-(y*20),midx+(x*60),midy-(y*90),20*z,1); 
+} 
+void rotate() 
+{ 
+	 int ang,x1,x2,y1,y2; 
+	 outtextxy(100,20,"ROTATION"); 
+	 axis(); 
+	 bar3d(midx+100,midy-20,midx+60,midy-90,20,5); 
+	 printf("Enter rotating angle"); 
+	 scanf("%d",&ang); 
+	 x1=100*cos(ang*3.14/180)-20*sin(ang*3.14/180); 
+	 y1=100*sin(ang*3.14/180)+20*cos(ang*3.14/180); 
+	 x2=60*cos(ang*3.14/180)-90*sin(ang*3.14/180); 
+	 y2=60*sin(ang*3.14/180)+90*cos(ang*3.14/180); 
+	 axis(); 
+	 printf("\n After rotating about z-axis\n"); 
+	 bar3d(midx+x1,midy-y1,midx+x2,midy-y2,20,5); 
+	 getch(); 
+	 printf("\n After rotating about x-axis\n"); 
+	 bar3d(midx+100,midy-x1,midx+60,midy-x2,20,5); 
+	 getch(); 
+	 printf("\n After rotating about y-axis\n"); 
+	 bar3d(midx-y1,midy-20,midx-y2,midy-90,20,5); 
+} 
+
+
+translation: 50 50 50
+rotation 45
+scaling 2 2 2

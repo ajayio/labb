@@ -1,0 +1,132 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#define LEFT_EDGE 0x1
+#define RIGHT_EDGE 0x2
+#define BOTTOM_EDGE 0x4
+#define TOP_EDGE 0x8
+#define INSIDE(a) (!a)
+#define REJECT(a,b) (a&b)
+#define ACCEPT(a,b) (!(a|b))
+#define FALSE 0
+#define TRUE 1
+struct point
+{
+	int x;
+	int y;
+}
+p1,p2,tmp;
+struct win
+{
+	int x;
+	int y;
+}
+winmin,winmax;
+unsigned char encode(struct point pt, struct win winmin,struct win winmax)
+{
+unsigned char code=0x00;
+if(pt.x<winmin.x)
+ 	code=code|LEFT_EDGE;
+if(pt.x>winmax.x)
+	code=code|RIGHT_EDGE;
+if(pt.y<winmin.y)
+	code=code|BOTTOM_EDGE;
+if(pt.y>winmax.y)
+	code=code|TOP_EDGE;
+return(code);
+}
+void swappts(struct point *p1,struct point *p2)
+{
+	tmp=*p1;
+	*p1=*p2;
+	*p2=tmp;
+}
+void swapcodes(unsigned char *c1,unsigned char *c2)
+{
+	unsigned char tmp;
+	tmp=*c1;
+	*c1=*c2;
+	*c2=tmp;
+}
+void clipline(struct win winmin, struct win winmax,struct point p1,struct point p2)
+{
+	unsigned char code1,code2;
+	int done=FALSE,draw=FALSE;
+	float m;
+	while(!done)
+	{
+		code1=encode(p1,winmin,winmax);
+		code2=encode(p2,winmin,winmax);
+		if(ACCEPT(code1,code2))
+		{
+			done=TRUE;
+			draw=TRUE;
+		}
+		else if(REJECT(code1,code2))
+			done=TRUE;
+		else
+		{
+			if(INSIDE(code1))
+			{
+				swappts(&p1,&p2);
+				swapcodes(&code1,&code2);
+			}
+			if(p2.x!=p1.x)
+				m=(p2.y-p1.y)/(p2.x-p1.x);
+			if(code1 &LEFT_EDGE)
+			{
+				p1.y+=(winmin.x-p1.x)*m;
+				p1.x=winmin.x;
+			}
+			else if(code1 &RIGHT_EDGE)
+			{
+				p1.y+=(winmax.x-p1.x)*m;
+				p1.x=winmax.x;
+			}
+			else if(code1 &BOTTOM_EDGE)
+			{
+				if(p2.x!=p1.x)
+					p1.x+=(winmin.y-p1.y)/m;
+				p1.y=winmin.y;
+			}
+			else if(code1 &TOP_EDGE)
+			{
+				if(p2.x!=p1.x)
+					p1.x+=(winmax.y-p1.y)/m;
+				p1.y=winmax.y;
+			}
+		}
+	}
+	if(draw)
+		line(p1.x,p1.y,p2.x,p2.y);
+}
+void main()
+{
+	int c,gd=DETECT,gm;
+	clrscr();
+	printf("\nEnter the window minimum coordinates");
+	scanf("%d%d",&winmin.x,&winmin.y);
+	printf("\nEnter the window max coordinates");
+	scanf("%d%d",&winmax.x,&winmax.y);
+	printf("\nEnter the starting point");
+	scanf("%d%d",&p1.x,&p1.y);
+	printf("\nenter the end point");
+	scanf("%d%d",&p2.x,&p2.y);
+	initgraph(&gd,&gm,"c:\\tc\\BGI");
+	printf("Before Clipping");
+	line(p1.x,p1.y,p2.x,p2.y);
+	rectangle(winmin.x,winmax.y,winmax.x,winmin.y);
+	getch();
+	clrscr();
+	cleardevice();
+	printf("After Clipping");
+	rectangle(winmin.x,winmax.y,winmax.x,winmin.y);
+	clipline(winmin,winmax,p1,p2);
+	getch();
+}
+
+
+
+
+Enter the clip window coordinates : 100 100 200 200
+Enter the line coordinates : 0 0 500 500
